@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copy the model and application files
 
-COPY ..
+COPY . .
 
 # Install necessary packages
 RUN pip install --no-cache-dir flask joblib
