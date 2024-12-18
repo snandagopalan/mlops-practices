@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install necessary packages
-RUN pip install --no-cache-dir flask joblib
+RUN pip install -r requirements.txt
 
 # Expose the port
 EXPOSE 5000
