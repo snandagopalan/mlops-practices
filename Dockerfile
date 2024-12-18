@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install necessary packages
-RUN pip install flask pandas sklearn joblib
+RUN pip install --no-cache-dir flask pandas sklearn joblib
 
 # Expose the port
 EXPOSE 5000
