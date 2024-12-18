@@ -1,16 +1,16 @@
-FROM python:3.8-slim
+# Base image
+FROM python:3.9-slim
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy the model and application files
-COPY iris_model.pkl /app/
-COPY app.py /app/
+# Copy app files
+COPY . /app
 
-# Install necessary packages
-RUN pip install --no-cache-dir flask joblib
+# Install dependencies
+RUN pip install -r requirements.txt
 
-# Expose the port
+# Expose port
 EXPOSE 5000
 
 # Run the application
