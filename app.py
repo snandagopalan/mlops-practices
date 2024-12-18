@@ -1,17 +1,18 @@
 from flask import Flask, request, jsonify
-import pickle
+import joblib
+import numpy as np
 
 app = Flask(__name__)
 
-# Load the model
-with open("model.pkl", "rb") as f:
-    model = pickle.load(f)
+# Load the trained model
+model = joblib.load('iris_model.pkl')
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.json
-    prediction = sum(model["weights"]) * data["input"]
-    return jsonify({"prediction": prediction})
+    data = request.get_json()
+    features = np.array(data['features']).reshape(1, -1)
+    prediction = model.predict(features)
+    return jsonify({'prediction': int(prediction[0])})
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
