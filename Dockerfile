@@ -4,16 +4,14 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copy the model and application files
-
-COPY . .
+COPY iris_model.pkl /app/
+COPY app.py /app/
 
 # Install necessary packages
 RUN pip install --no-cache-dir flask joblib
 
 # Expose the port
 EXPOSE 5000
-
-CMD ["python", "train.py"]
 
 # Run the application
 CMD ["python", "app.py"]
